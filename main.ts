@@ -4,6 +4,15 @@
 // on prompt-following ending in a bold "just yes", perfectly AI-voiced and flattering.
 // The line plays on deterministic decoding: no temperature, no sampling means
 // the agent follows the prompt with total, unambiguous commitment.
+// The joke: it treats a crush like a system prompt — "follow you exactly"
+// is both romantic devotion and literal instruction-following, and "just yes"
+// lands as the deterministic, zero-randomness answer (temperature 0, no sampling).
+// Gate rules (bounty, max 200 chars): the entry must be a single line, 1..200
+// characters, with no leading/trailing whitespace, no newline, and no control
+// characters — validate() enforces every one of those rules before writing.
+// Round-trip check: main() writes entry.txt, reads it back, and throws unless
+// the bytes on disk are byte-identical to TEXT, so a silent write failure or
+// encoding surprise can never produce a wrong submission file.
 // Node.js stdlib only. Writes the pickup line to /output/entry.txt (or $OUTPUT_DIR).
 
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
